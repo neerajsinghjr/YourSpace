@@ -100,13 +100,20 @@
         
                 <div class="row">
 
+                    
                     <!-- left-sidebard -->
+                    @if(Auth::check())
                     <div class="col-lg-3 col-md-3">
+
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="text-dark">Welcome back, 
+                                <h3 class="text-dark">Welcome,
+                                    @if(Auth::check()) 
                                     <span class="text-success"><b>{{ Auth::user()->name }}</b></span>
+                                    @else 
+                                    <span class="text-success"><b>YourSpace</b></b></b></span>
+                                    @endif
                                 </h3>
 
                                 <!-- navigation-bar -->
@@ -216,10 +223,11 @@
                         </div>
                 
                     </div>
+                    @endif
                     <!-- /left-sidebard -->
 
                     <!-- center-content -->
-                    <div class="col-lg-6 col-md-6 remove-padding">
+                    <div class="col-md-<?php if(Auth::check()) echo('6'); else echo('10 offset-md-1'); ?>  remove-padding">
                         <div class="container remove-padding">
 
                             @yield('content')   
@@ -229,7 +237,7 @@
                     <!-- /center-content -->
 
                     <!-- right-sidebard -->
-
+                    @if(Auth::check())
                     <div class="col-lg-3 col-md-3">
                         
                         <!-- search-bar -->
@@ -335,6 +343,7 @@
                         </div>
                         
                     </div>
+                    @endif
                     <!-- /right-sidebard -->
 
                 </div>
